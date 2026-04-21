@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.pytest_cache/
+
+# Virtual envs
+venv/
+env/
+.venv/
+ENV/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# Env files (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+*.env
+backend/.env
+frontend/.env
+!.env.example
+
+# GCP service account keys (NEVER commit)
+# RateRail-style convention: leading-dot JSON files in backend/ (e.g. .critter-sa-key.json)
+*-service-account*.json
+service-account*.json
+gcp-key*.json
+credentials.json
+.critter-*.json
+.*-sa-key*.json
+backend/.*.json
+
+# Node
+node_modules/
+dist/
+.vite/
+.cache/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Test / coverage
+.coverage
+htmlcov/
+coverage.xml
+.tox/
+
+# Logs from RateRail-style file logging
+auth.log
+django.log
+critter.log
+security.log
+
+# OS
+Thumbs.db
+.DS_Store
