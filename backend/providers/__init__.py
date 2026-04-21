@@ -4,13 +4,15 @@ Providers — adapters for external AI services.
 Layout:
   base.py            — abstract VideoProvider interface
   veo.py             — Vertex AI Veo 3 (primary video generation)
-  runway.py          — Runway Gen-4 (character consistency fallback)
-  anthropic_text.py  — Claude Sonnet for scripts and captions
-  image_describe.py  — Gemini Vision for subject auto-description
+  runway.py          — Runway Gen-3 / Gen-4 / Gen-4.5
+  kling.py           — Kling 2.1 (Kuaishou)
+  text.py            — DISPATCHER for text-gen tasks (polish/caption/planner/describe)
+  gemini_text.py     — Gemini 2.5 Flash implementation of all 4 text tasks
+  anthropic_text.py  — Claude Sonnet implementation of all 4 text tasks
 
-The generation pipeline imports get_video_provider(name) and calls .generate().
-Swap providers by changing the name in the generation row or the default in
-settings.
+Video-gen callers: use get_video_provider(name) below.
+Text-gen callers: always import from providers.text (the dispatcher), so
+which LLM runs is a settings choice (TEXT_*_MODEL), not a code change.
 """
 
 from .base import VideoProvider, VideoGenerationResult, VideoGenerationError

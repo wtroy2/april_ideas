@@ -22,3 +22,5 @@ print('Key length:', len(settings.ANTHROPIC_API_KEY))
 
 Key prefix: sk-ant-api03-9m
 Key length: 108
+
+ok now as you stated earlier users stitch together multiple videos to create longer clips. they section out these videos by scenes that can go together seemlessly. please build this out so the user and/or ai can plan scenes to create these longer videos and stritch together the scenes. please give the user the scene plan for the longer videos before the videos are generated and allow them to create n versions of each scene where they can specify n for each scene or regenerate a specific scene in the overall longer video and stitch them together super nicely

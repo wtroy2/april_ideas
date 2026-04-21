@@ -29,7 +29,8 @@ def auto_describe_subject(subject_id):
         logger.info(f'auto_describe_subject: no photos for {subject.name}, skipping')
         return
 
-    from providers.image_describe import describe_subject_from_photos
+    # Dispatcher picks backend based on TEXT_DESCRIBE_MODEL (default: gemini_flash).
+    from providers.text import describe_subject_from_photos
     try:
         description = describe_subject_from_photos(subject, photos)
         subject.auto_description = description.strip()

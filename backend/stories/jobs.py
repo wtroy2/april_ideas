@@ -30,7 +30,8 @@ def plan_story(project_id):
     project.save(update_fields=['status', 'updated_at'])
 
     try:
-        from .planner import plan_scenes
+        # Dispatcher picks the backend based on TEXT_PLANNER_MODEL (default: gemini_flash).
+        from providers.text import plan_scenes
         scenes = plan_scenes(project)
         # Wipe any existing scenes on replan
         project.scenes.all().delete()

@@ -58,18 +58,20 @@ def run_generation(generation_id):
 
     try:
         # 1. Build the prompt. Two paths:
-        #    - batch mode: theme template + scenario + detail → optional Claude expansion
-        #    - scene mode: scene.prompt is already a full prompt → optional Claude polish
+        #    - batch mode: theme template + scenario + detail → optional polish
+        #    - scene mode: scene.prompt is already a full prompt → optional polish
+        # Which LLM runs the polish is controlled by TEXT_POLISH_MODEL in settings
+        # (see providers/text.py). Defaults to Gemini Flash.
         if ctx['is_scene']:
             raw_prompt = ctx['raw_prompt']
             if ctx['expand_prompts']:
-                from providers.anthropic_text import polish_prompt
+                from providers.text import polish_prompt
                 prompt = polish_prompt(raw_prompt, subject=subject)
             else:
                 prompt = raw_prompt
         else:
             if ctx['expand_prompts']:
-                from providers.anthropic_text import expand_prompt
+                from providers.text import expand_prompt
                 prompt = expand_prompt(
                     theme=theme, subject=subject,
                     scenario=ctx['scenario'], detail=ctx['detail'],
@@ -141,7 +143,7 @@ def run_generation(generation_id):
 
         # 5. Caption — batch mode only (scenes don't have their own caption)
         if ctx['generate_captions'] and not ctx['is_scene']:
-            from providers.anthropic_text import generate_caption
+            from providers.text import generate_caption
             try:
                 gen.caption = generate_caption(
                     theme=theme, subject=subject,

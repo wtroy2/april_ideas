@@ -421,6 +421,14 @@ GOOGLE_CLOUD_GEMINI_LOCATION = os.environ.get('GOOGLE_CLOUD_GEMINI_LOCATION', 'u
 # the service account credentials (settings.VERTEX_CREDENTIALS), not via the
 # public AI Studio endpoint.
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+
+# Which backend each text-generation task uses. See providers/text.py.
+# Valid values: 'gemini_flash' (default, uses Vertex AI service account)
+#               'claude_sonnet' (requires ANTHROPIC_API_KEY)
+TEXT_POLISH_MODEL   = os.environ.get('TEXT_POLISH_MODEL', 'gemini_flash')
+TEXT_CAPTION_MODEL  = os.environ.get('TEXT_CAPTION_MODEL', 'gemini_flash')
+TEXT_PLANNER_MODEL  = os.environ.get('TEXT_PLANNER_MODEL', 'gemini_flash')
+TEXT_DESCRIBE_MODEL = os.environ.get('TEXT_DESCRIBE_MODEL', 'gemini_flash')
 RUNWAY_API_KEY = os.environ.get('RUNWAY_API_KEY', '')
 ELEVENLABS_API_KEY = os.environ.get('ELEVENLABS_API_KEY', '')
 # Kling uses access key + secret key (HS256 JWT auth). Get them at
